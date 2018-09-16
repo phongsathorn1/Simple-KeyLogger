@@ -13,8 +13,10 @@ body{
     background: #E0E0E0;
     border-radius: 5px;
     margin: 5px 0px;
+    margin-right: 10px;
     padding: 5px 10px;
     display: inline-block;
+    line-height: 1.2em;
 }
 
 .letter{
@@ -57,4 +59,10 @@ body{
 
 .button-area{
     padding: 25px 0px;
+}
+
+#log_list a{
+    color: #0E543F;
+    text-decoration: underline;
+    cursor: pointer;
 }
