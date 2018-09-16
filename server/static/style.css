@@ -39,11 +39,23 @@ body{
     width: 100%;
 }
 
-.reload-btn{
+.btn{
     padding: 10px;
+    border-radius: 5px;
+}
+
+.reload-btn{
     background: #6ddb8c;
     border: 2px solid #6ddb8c;
-    border-radius: 5px;
+}
+
+.clear-btn{
+    background: #cccccc;
+    border: 2px solid #cccccc;
+}
+
+.clear-btn:active{
+    border: 2px solid #555555;
 }
 
 .reload-btn:active{
