@@ -32,6 +32,11 @@ function load_content(){
 
         for(let i = 0; i < data.length; i++){
             let log_item = data[i];
+
+            if(log_item.length <= 0){
+                continue;
+            }
+            
             let reg = new RegExp(Object.keys(replace_list).join("|"),"gi");
 
             log_item = log_item.replace(reg, m => replace_list[m]);
