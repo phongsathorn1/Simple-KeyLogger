@@ -78,3 +78,4 @@ function toggle_command_key(){
 }
 
 $(document).ready(load_content());
+setInterval(load_content, 5000);
