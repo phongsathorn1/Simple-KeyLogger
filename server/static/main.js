@@ -20,10 +20,11 @@ function convert_th(caller){
 }
 
 const replace_list = {"period": ".", "backslash": "\\", "P_Divide": "/", "space": " ", "quotedbl": "\"", "comma": ",", "apostrophe": "'", "colon": ":", "semicolon": ";"};
+let get_url = path => "http://localhost:5000/" + path
 
 function load_content(){
     $("#log_list").addClass("loading");
-    axios.get('http://localhost:5000/api/get').then(response => {
+    axios.get(get_url('api/get')).then(response => {
         console.log("Log file Loaded.");
         $("#log_list").removeClass("loading");
         $("#log_list").empty();
@@ -33,10 +34,6 @@ function load_content(){
         for(let i = 0; i < data.length; i++){
             let log_item = data[i];
 
-            if(log_item.length <= 0){
-                continue;
-            }
-            
             let reg = new RegExp(Object.keys(replace_list).join("|"),"gi");
 
             log_item = log_item.replace(reg, m => replace_list[m]);
@@ -44,15 +41,40 @@ function load_content(){
                 temp_log_item += log_item;
             }
             else{
-                if(temp_log_item.length != 0){
+                if(temp_log_item.length != 0 || log_item.length == 0){
                     $("#log_list").append('<div><div class="letter log-item">'+temp_log_item+'</div><a onclick="convert_th(this)">convert to TH</a></div>');
                 }
-                $("#log_list").append('<div><div class="command_key log-item">'+data[i]+'</div></div>');
+                if(log_item.length != 0){
+                    $("#log_list").append('<div><div class="command_key log-item">'+data[i]+'</div></div>');
+                }
                 temp_log_item = "";
             }
         }
         $('#log_list').scrollTop($('#log_list')[0].scrollHeight);
+        if(is_command_key_hide){
+            is_command_key_hide = false;
+            toggle_command_key()
+        }
     });
+}
+
+function clear_content(){
+    axios.get(get_url('api/clear')).then(response=> {
+        if(response.status == 200){
+            $("#log_list").empty();
+        }
+    })
+}
+
+let is_command_key_hide = false;
+function toggle_command_key(){
+    if(is_command_key_hide){
+        $('#log_list').children("div:has(.command_key)").css("display", "block");
+    }
+    else{
+        $('#log_list').children("div:has(.command_key)").css("display", "none");
+    }
+    is_command_key_hide = !is_command_key_hide;
 }
 
 $(document).ready(load_content());
