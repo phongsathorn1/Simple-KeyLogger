@@ -37,8 +37,6 @@ function load_content(){
             log_item = log_item.replace(reg, m => replace_list[m]);
             if(log_item.length == 1){
                 temp_log_item += log_item;
-            }else if(log_item == "period"){
-
             }
             else{
                 if(temp_log_item.length != 0){
