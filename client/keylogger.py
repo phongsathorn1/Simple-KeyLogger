@@ -42,6 +42,7 @@ def test():
     while True:
         try:
             requests.post("http://localhost:5000/api/recive", files={'file': open(log_file)})
+            open(log_file, "w")
             sleep(3)
         except Exception as e:
             print(e)
